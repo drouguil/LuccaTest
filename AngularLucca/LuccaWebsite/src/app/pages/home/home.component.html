@@ -1,0 +1,25 @@
+<app-parallax-background></app-parallax-background>
+
+<form>
+  <h1 class="mod-headline">Lucca Voyage</h1>
+  <mat-form-field id="filter" appearance="outline">
+    <mat-label>Trier par</mat-label>
+    <mat-select (selectionChange)="selectFilter()" [formControl]="filterControl">
+      <mat-select-trigger *ngIf="filterControl.value">
+        {{ filterControl.value.name }} <i class="lucca-icon">{{ filterControl.value.icon }}</i>
+      </mat-select-trigger>
+      <mat-option *ngFor="let filter of filters" [value]="filter">
+        {{filter.name}} <i class="lucca-icon">{{ filter.icon }}</i>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field id="destination" appearance="outline">
+    <input type="text" placeholder="Où voudriez-vous aller ?" aria-label="Destination" matInput [formControl]="destinationControl"
+      [matAutocomplete]="auto">
+    <mat-autocomplete (optionSelected)='selectDestination($event.option.value)' #auto="matAutocomplete">
+      <mat-option *ngFor="let destination of destinationsOptions | async" [value]="destination.id">
+        {{ destination.name }} : {{ destination.priceRange }} <i class="lucca-icon" *ngFor="let item of ratingArray(destination.rating)">star</i> <i *ngIf="isHalf(destination.rating)" class="lucca-icon half">star</i>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
