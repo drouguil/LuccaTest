@@ -6,14 +6,18 @@ using System.IO;
 
 namespace LuccaDevises.Services
 {
+    /// <summary>
+    /// 
+    /// </summary>
+
     public class FileReaderService
     {
         #region Public methods
 
         /// <summary>
-        /// 
+        /// Extract data from file
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="path">File path</param>
         /// <returns></returns>
 
         public static Data ExtractData(string path)
@@ -34,9 +38,9 @@ namespace LuccaDevises.Services
         #region Private methods
 
         /// <summary>
-        /// 
+        /// Extract data to convert at the first line
         /// </summary>
-        /// <param name="file"></param>
+        /// <param name="file">File</param>
         /// <returns></returns>
 
         private static DataToConvert ExtractDataToConvert(StreamReader file)

@@ -25,10 +25,10 @@
         #region Constructor
 
         /// <summary>
-        /// 
+        /// Constructor
         /// </summary>
         /// <param name="isReverse">Direction of the edge</param>
-        /// <param name="step"></param>
+        /// <param name="step">Edge</param>
 
         public WayStep(Edge step, bool isReverse)
         {

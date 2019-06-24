@@ -31,7 +31,7 @@ namespace LuccaDevises.Models.Graph
         /// </summary>
         /// <param name="currency">Currency</param>
 
-        internal Vertex(string currency)
+        public Vertex(string currency)
         {
             Currency = currency;
             Edges = new List<Edge>();

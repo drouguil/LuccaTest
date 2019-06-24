@@ -85,14 +85,13 @@ namespace LuccaDevises.Services
         }
 
         /// <summary>
-        /// 
+        /// Get the shortest path from the initial currency to the target currency 
         /// </summary>
-        /// <param name="vertices"></param>
-        /// <param name="dataToConvert"></param>
+        /// <param name="vertices">All currency</param>
+        /// <param name="dataToConvert">Data to convert</param>
 
         private static Path GetShortestConvertPath(List<Vertex> vertices, DataToConvert dataToConvert)
         {
-
             Dictionary<string, Path> paths = new Dictionary<string, Path>();
             Dictionary<string, bool> marks = new Dictionary<string, bool>();
 

@@ -3,7 +3,7 @@
 namespace LuccaDevises.Models.Graph
 { 
     /// <summary>
-    /// 
+    /// Path from an vertex to another
     /// </summary>
 
     public class Path

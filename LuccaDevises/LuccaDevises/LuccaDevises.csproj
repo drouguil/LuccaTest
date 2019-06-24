@@ -58,7 +58,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,6 +80,11 @@
     <Compile Include="Exceptions\AlgorithmException.cs" />
     <Compile Include="Models\Graph\WayStep.cs" />
     <Compile Include="Models\Graph\Path.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Services\CurrencyConverterService.cs" />
     <Compile Include="Models\Graph\Edge.cs" />
     <Compile Include="Models\Data\ExchangeRate.cs" />
@@ -90,8 +95,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="LuccaDevises_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.1">

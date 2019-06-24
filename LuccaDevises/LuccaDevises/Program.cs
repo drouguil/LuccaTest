@@ -64,11 +64,11 @@ namespace LuccaDevises
                     Console.WriteLine("Uncaught error !");
                 }
 
-                Console.ReadLine();
-
             } else {
-                throw new FileNotFoundException("File name missed !");
+                Console.WriteLine("File name missed !");
             }
+
+            Console.ReadLine();
         }
 
         #endregion
