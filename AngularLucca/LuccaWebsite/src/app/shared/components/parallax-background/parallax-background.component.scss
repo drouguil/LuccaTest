@@ -1,0 +1,13 @@
+@import '../../../assets/scss/utils';
+
+:host {
+    @include dimensions(100%);
+    @include flex(vertical);
+    @include z-index(second);
+    @include background-size(cover);
+    @include absolute();
+    @include background-attachment();
+    @include perspective(1000);
+    @include backface-visibility(hidden);
+    @include transform-style(preserve-3d);
+}

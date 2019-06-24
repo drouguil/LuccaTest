@@ -1,0 +1,250 @@
+@mixin flex($direction:null, $wrap:null) {
+    display: flex;
+    @if($direction==vertical) {
+        flex-direction: column;
+    }
+    @else if($direction==horizontal) {
+        flex-direction: row;
+    }
+    @else {
+        @error 'The first param must be equal to vertical or horizontal';
+    }
+    @if($wrap==inherit) {
+        flex-wrap: $wrap;
+    }
+    @else if($wrap==initial) {
+        flex-wrap: $wrap;
+    }
+    @else if ($wrap==nowrap) {
+        flex-wrap: $wrap;
+    }
+    @else if ($wrap==unset) {
+        flex-wrap: $wrap;
+    }
+    @else if ($wrap==wrap) {
+        flex-wrap: $wrap;
+    }
+    @else if ($wrap==wrap-reverse) {
+        flex-wrap: $wrap;
+    }
+}
+
+@mixin dimensions($width:null, $height:null) {
+    @if($width) {
+        width: $width;
+    }
+    @else {
+        @error 'Missing first param';
+    }
+    @if($height) {
+        height: $height;
+    }
+    @else {
+        height: $width;
+    }
+}
+
+@mixin min-dimensions($width:null, $height:null) {
+    @if($width) {
+        min-width: $width;
+    }
+    @else {
+        @error 'Missing first param';
+    }
+    @if($height) {
+        min-height: $height;
+    }
+    @else {
+        min-height: $width;
+    }
+}
+
+@mixin max-dimensions($width:null, $height:null) {
+    @if($width) {
+        max-width: $width;
+    }
+    @else {
+        @error 'Missing first param';
+    }
+    @if($height) {
+        max-height: $height;
+    }
+    @else {
+        max-height: $width;
+    }
+}
+
+@mixin margin($margin...) {
+    margin: $margin;
+}
+
+@mixin padding($padding...) {
+    padding: $padding;
+}
+
+@mixin transition($duration: 1s, $options...) {
+    transition: all $duration $options;
+    -webkit-transition: all $duration $options;
+    -moz-transition: all $duration $options;
+    -o-transition: all $duration $options;
+}
+
+@mixin animation($name: null, $duration: 1s, $timing-function: ease-in-out, $iteration-count: infinite) {
+    @if($name) {
+        animation: $name $duration $timing-function $iteration-count;
+        -webkit-animation: $name $duration $timing-function $iteration-count;
+        -moz-animation: $name $duration $timing-function $iteration-count;
+        -o-animation: $name $duration $timing-function $iteration-count;
+    }
+    @else {
+        @error 'Missing the animation\'s name';
+    }
+}
+
+@mixin transform($actions...) {
+    @if($actions) {
+        -ms-transform: $actions;
+        -moz-transform: $actions;
+        -webkit-transform: $actions;
+        -o-transform: $actions;
+        transform: $actions;
+    }
+    @else {
+        @error 'Missing tranform actions';
+    }
+}
+
+@mixin background($type: null, $background: null, $path-level:2, $caracs...) {
+	$url: '';
+	@for $i from 1 through $path-level {
+		$url: $url + '../';
+	}
+    @if($type) {
+        @if($type==image) {
+            background: url($url + 'assets/img/backgrounds/' + $background) + $caracs;
+        }
+        @else if($type==button) {
+            background: url($url + 'assets/img/buttons/' + $background) + $caracs;
+        }
+        @else if($type==color) {
+            background-color: $background + $caracs;
+        }
+        @else {
+            @error 'The background type must be equal to image, button or color';
+        }
+    }
+    @else {
+        @error 'Missing background type';
+    }
+}
+
+@mixin background-size($size: cover) {
+    -webkit-background-size: $size;
+    -moz-background-size: $size;
+    background-size: $size;
+}
+
+@mixin background-attachment($attachment: fixed) {
+    background-attachment: $attachment;
+}
+
+@mixin perspective($perspective: 1000) {
+    -webkit-perspective: $perspective;
+    perspective: $perspective;
+}
+
+@mixin backface-visibility($visibility: hidden) {
+    -webkit-backface-visibility: $visibility;
+    backface-visibility: $visibility;
+}
+
+@mixin transform-style($transform-style: preserve-3d) {
+    -webkit-transform-style: $transform-style;
+    transform-style: $transform-style;
+}
+
+@mixin z-index($plan: null) {
+    $index: -1;
+    @if ($plan==background) {
+        $index: 0;
+    }
+    @else if ($plan==third) {
+        $index: 1;
+    }
+    @else if ($plan==second) {
+        $index: 2;
+    }
+    @else if ($plan==first) {
+        $index: 3;
+    }
+    z-index: $index;
+}
+
+@mixin link() {
+    cursor: pointer;
+}
+
+@mixin absolute($top:inherit,
+$right:inherit,
+$bottom:inherit,
+$left:inherit,
+$content:null) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    @if($content) {
+        content: '';
+    }
+}
+
+@mixin fixed($top:inherit,
+$right:inherit,
+$bottom:inherit,
+$left:inherit) {
+    position: fixed;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin relative() {
+    position: relative;
+}
+
+
+@mixin letter-spacing($spacing:normal) {
+    letter-spacing: $spacing;
+}
+
+@mixin shadow-title() {
+	@include letter-spacing(5px);
+    text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 3px 1px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 0, 0, .1), 0 1px 3px rgba(0, 0, 0, .3), 0 3px 5px rgba(0, 0, 0, .2), 0 5px 10px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .2), 0 20px 20px rgba(0, 0, 0, .15);
+}
+
+@mixin shadow-text() {
+    text-shadow: 0 1px 0 #ccc;
+}
+
+@mixin uppercase() {
+    text-transform: uppercase;
+}
+
+@mixin lowercase() {
+    text-transform: lowercase;
+}
+
+@mixin hover() {
+    &:hover,
+    &:focus,
+    &:active,
+    &:target {
+        @content;
+    }
+}
+
+@mixin no-display() {
+    display: none;
+}

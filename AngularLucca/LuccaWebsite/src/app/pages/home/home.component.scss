@@ -1,0 +1,58 @@
+@import '../../../assets/scss/utils';
+
+:host {
+    @include dimensions(100%);
+    @include flex(vertical);
+    @include relative();
+    overflow: hidden;
+
+    form {
+        @include margin(auto);
+        @include flex(vertical);
+        @include z-index(first);
+        @include dimensions(100em, auto);
+        @include max-dimensions(80%, inherit);
+
+        .mod-headline {
+            font-size: 5em;
+            text-align: center;
+            color: white;
+            @include margin(0 0 3rem);
+        }
+
+        mat-form-field {
+            @include dimensions(40em, auto);
+            @include max-dimensions(100%, inherit);
+            @include margin(auto);
+        }
+
+        ::ng-deep {
+            .mat-form-field-infix {
+                @include padding(1em 0 1.5em 0);
+            }
+
+            .mat-form-field-outline {
+                background-color: white;
+
+                .mat-form-field-outline-start,
+                .mat-form-field-outline-end {
+                    border-radius: 0;
+                }
+            }
+
+            .mat-form-field-label {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .lucca-icon.ng-star-inserted {
+        color: orange;
+    }
+    .half {
+        width:10.5px;
+        overflow:hidden;
+    }
+}

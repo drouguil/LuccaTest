@@ -1,0 +1,8 @@
+@import '../../../assets/scss/utils';
+
+:host {
+    @include dimensions(100%);
+    @include flex(vertical);
+    @include background-size(cover);
+    @include background(image,'not_found.jpg', 3, center center no-repeat);
+}
