@@ -8,7 +8,7 @@ using System.IO;
 namespace LuccaDevises
 {
     /// <summary>
-    /// 
+    /// Main
     /// </summary>
 
     class Program
@@ -22,7 +22,7 @@ namespace LuccaDevises
 
         static void Main(string[] args)
         {
-            if (args.Length > 0) {
+            if (args.Length == 1) {
                 try
                 {
                     Data data = FileReaderService.ExtractData(args[0]);
@@ -64,7 +64,11 @@ namespace LuccaDevises
                     Console.WriteLine("Uncaught error !");
                 }
 
-            } else {
+            } else if(args.Length > 1)
+            {
+                Console.WriteLine("Multiple files names !");
+            } else
+            {
                 Console.WriteLine("File name missed !");
             }
 

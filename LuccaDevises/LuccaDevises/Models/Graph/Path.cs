@@ -57,12 +57,20 @@ namespace LuccaDevises.Models.Graph
 
         public void AddStep(Edge edge, bool isReverse, Path path)
         {
+            // Update distance
+
             uint lastDist = Dist;
             Dist = path.Dist + 1;
+
+            // If the last way is not the shortest clear it
+
             if (lastDist <= Dist)
             {
                 Way.Clear();
             }
+
+            // Add the new way steps at the current way
+
             Way.Add(new WayStep(edge, isReverse));
             Way.AddRange(path.Way);
         }

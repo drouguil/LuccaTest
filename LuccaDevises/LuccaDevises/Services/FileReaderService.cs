@@ -7,7 +7,7 @@ using System.IO;
 namespace LuccaDevises.Services
 {
     /// <summary>
-    /// 
+    /// Service for extract data from the data file
     /// </summary>
 
     public class FileReaderService
@@ -18,17 +18,27 @@ namespace LuccaDevises.Services
         /// Extract data from file
         /// </summary>
         /// <param name="path">File path</param>
-        /// <returns></returns>
+        /// <returns>Data form data file</returns>
 
         public static Data ExtractData(string path)
         {
+            // Get file
+
             StreamReader file = new StreamReader(path);
+
+            // Get data to convert
 
             DataToConvert dataToConvert = ExtractDataToConvert(file);
 
+            // Get exchange rates
+
             ExchangeRate[] exchangeRates = ExtractExchangeRates(file);
 
+            // Close file reading
+
             file.Close();
+
+            // Return data from file
 
             return new Data(dataToConvert, exchangeRates);
         }
@@ -38,19 +48,25 @@ namespace LuccaDevises.Services
         #region Private methods
 
         /// <summary>
-        /// Extract data to convert at the first line
+        /// Extract data to convert from data file at the first line
         /// </summary>
-        /// <param name="file">File</param>
-        /// <returns></returns>
+        /// <param name="file">Data file</param>
+        /// <returns>Data to convert</returns>
 
         private static DataToConvert ExtractDataToConvert(StreamReader file)
         {
+            // Get the first line
+
             string line = file.ReadLine();
+
+            // If the line is empty
 
             if (line == null)
             {
                 throw new DataFormatException("First line is empty");
             }
+
+            // Browse line for extract data if the data length is 3
 
             string[] datas = line.Split(';');
             if(datas.Length == 3)
@@ -97,19 +113,25 @@ namespace LuccaDevises.Services
         }
 
         /// <summary>
-        /// 
+        /// Extract exchange rates from data file
         /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
+        /// <param name="file">Data file</param>
+        /// <returns>Exchange rates</returns>
 
         private static ExchangeRate[] ExtractExchangeRates(StreamReader file)
         {
+            // Get the second line
+
             string line = file.ReadLine();
+
+            // If the line is empty
 
             if (line == null)
             {
                 throw new DataFormatException("Second line is empty");
             }
+
+            // Get number of exchange rates
 
             uint nbExRates;
             string nbExRatesText = line.Trim();
@@ -123,29 +145,45 @@ namespace LuccaDevises.Services
                 throw new DataFormatException("The number of exchange rates have an invalid format", "nbExRates = " + nbExRatesText, "Error : " + e.Message);
             }
 
+            // If there is no exchange rate
 
             if (nbExRates == 0)
             {
                 throw new DataFormatException("No exchange rate");
             }
 
-            bool isCompleted = false;
+            // Initialize browsing data
 
             uint cptExRates = 0;
+            bool isCompleted = false;
+
+            // Initialize the array of exchange rates
 
             ExchangeRate[] exchangeRates = new ExchangeRate[nbExRates];
 
+            // Browse exchange rates lines
+
             while(!isCompleted) {
                 line = file.ReadLine();
+
+                // if line is empty
 
                 if(line == null)
                 {
                     throw new DataFormatException("Number of exchange rates = " + nbExRates, "Line n°" + (cptExRates + 3) + " is empty");
                 }
+
+                // Extract exchange rate data
+
                 exchangeRates[cptExRates] = ExtractExchangeRate(line);
+                
+                // Update browsing data
+
                 cptExRates++;
                 isCompleted = cptExRates >= nbExRates;
             }
+
+            // Check if the file have extra lines
 
             line = file.ReadLine();
 
@@ -158,22 +196,27 @@ namespace LuccaDevises.Services
         }
 
         /// <summary>
-        /// 
+        /// Extract exchange rate from a line of data file
         /// </summary>
-        /// <param name="line"></param>
-        /// <returns></returns>
+        /// <param name="line">Line of data file with the exchange rate</param>
+        /// <returns>Exchange rate</returns>
 
         private static ExchangeRate ExtractExchangeRate(string line)
         {
+            // If line is empty
+
             if(line.Length == 0)
             {
                 throw new DataFormatException("An exchange rate line is empty");
             }
 
             string[] datas = line.Split(';');
+
+            // If data have the correct length
+
             if (datas.Length == 3)
             {
-                // Current device
+                // Initial currency
 
                 string dd = datas[0].Trim().ToUpper();
                 if (dd.Length != 3)
@@ -181,7 +224,7 @@ namespace LuccaDevises.Services
                     throw new DataFormatException("The initial currency (DD) have an invalid length", "DD = " + dd, "DD Length = " + dd.Length);
                 }
 
-                // Converted device
+                // Target currency
 
                 string da = datas[1].Trim().ToUpper();
                 if (da.Length != 3)
@@ -202,10 +245,14 @@ namespace LuccaDevises.Services
                     throw new DataFormatException("The conversion rate (T) have an invalid format", "T = " + tText, "Error : " + e.Message);
                 }
 
+                // If amount is zero
+
                 if(t == 0)
                 {
                     throw new DataFormatException("The conversion rate (T) is zero", "Line = " + line);
                 }
+
+                // If amount is negative
 
                 if(t < 0)
                 {
