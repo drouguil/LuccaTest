@@ -1,2 +1,2 @@
-set /p file = File name ? 
-LuccaDevises file
+set /p file="File name ?"
+LuccaDevises %file%
