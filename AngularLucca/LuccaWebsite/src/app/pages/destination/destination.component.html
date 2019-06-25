@@ -1,3 +1,20 @@
-<p>
-  destination works!
-</p>
+<div class="bg-dark"></div>
+<div class="content">
+  <div class="infos" *ngIf="destination">
+    <nav class="breadcrumb">
+      <a class="breadcrumb-item" [routerLink]="['/home']">Destinations</a>
+      <span class="breadcrumb-item is-active">{{ destination.name }}</span>
+    </nav>
+
+    <h1>{{ destination.name }}</h1>
+
+    <div class="description">
+      {{ destination.description }}
+    </div>
+
+    <div class="activities">
+      <app-activity-infos *ngFor="let activity of activities" [activity]="activity"></app-activity-infos>
+    </div>
+  </div>
+  <app-destination-infos [destination]="destination"></app-destination-infos>
+</div>

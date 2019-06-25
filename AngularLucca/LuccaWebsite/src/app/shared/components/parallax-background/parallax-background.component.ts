@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, Renderer, HostListener, HostBinding } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener, HostBinding, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-parallax-background',
@@ -23,7 +23,7 @@ export class ParallaxBackgroundComponent implements OnInit {
    * Parallax Friction
    */
 
-  private friction: number = 1 / 200;
+  private friction: number = 1 / 50;
 
   /**
    * Parallax translate background
@@ -49,13 +49,26 @@ export class ParallaxBackgroundComponent implements OnInit {
     this.x += (lFollowX - this.x) * this.friction;
     this.y += (lFollowY - this.y) * this.friction;
 
-    this.renderer.setElementStyle(this.elRef.nativeElement, 'transform', 'translate(' + this.x + 'px, ' + this.y + 'px) scale(1.1)');
+    this.renderer.setStyle(this.elRef.nativeElement, 'transform', 'translate(' + this.x + 'px, ' + this.y + 'px) scale(1.1)');
   }
 
-  constructor(private readonly elRef: ElementRef, private readonly renderer: Renderer) { }
+  /**
+   * 
+   * @param elRef 
+   * @param renderer 
+   */
+
+  constructor(
+    private readonly elRef: ElementRef,
+    private readonly renderer: Renderer2
+  ) { }
+
+  /**
+   * 
+   */
 
   ngOnInit() {
-    this.renderer.setElementStyle(this.elRef.nativeElement, 'background',
+    this.renderer.setStyle(this.elRef.nativeElement, 'background',
       'url("../../../assets/img/backgrounds/home.jpg") center center no-repeat');
   }
 

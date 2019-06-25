@@ -20,6 +20,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DestinationInfosComponent } from './shared/components/destination-infos/destination-infos.component';
+import { ActivityInfosComponent } from './shared/components/activity-infos/activity-infos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     NotFoundComponent,
     DestinationComponent,
-    ParallaxBackgroundComponent
+    ParallaxBackgroundComponent,
+    DestinationInfosComponent,
+    ActivityInfosComponent
   ],
   imports: [
     BrowserModule,

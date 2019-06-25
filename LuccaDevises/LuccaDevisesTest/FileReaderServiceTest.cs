@@ -11,10 +11,24 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LuccaDevisesTest
 {
+    /// <summary>
+    /// Test for the file reader service
+    /// </summary>
+
     [TestClass]
     public class FileReaderServiceTest
     {
+        #region Private attributes
+
+        /// <summary>
+        /// Allow to call private static methods for testing
+        /// </summary>
+
         private PrivateType _privateType;
+
+        #endregion
+
+        #region Test initialization
 
         /// <summary>
         /// Initialization for test methods
@@ -31,7 +45,13 @@ namespace LuccaDevisesTest
             _privateType = new PrivateType(typeof(FileReaderService));
         }
 
+        #endregion
+
         #region Test 
+
+        #region DataToConvert
+
+        #region SUCCESS
 
         [TestMethod]
         [TestProperty("DataToConvert", "SUCCESS")]
@@ -58,6 +78,10 @@ namespace LuccaDevisesTest
             Assert.AreEqual(dataToConvert.M, (uint) 550);
             Assert.AreEqual(dataToConvert.D2, "JPY");
         }
+
+        #endregion SUCCESS
+
+        #region ERROR
 
         [TestMethod]
         [TestProperty("DataToConvert", "ERROR")]
@@ -279,6 +303,14 @@ namespace LuccaDevisesTest
             Assert.AreEqual(exception.InnerException.Message, string.Join("\n", messages));
         }
 
+        #endregion
+
+        #endregion
+
+        #region ExtractExchangeRates
+
+        #region SUCCESS
+
         [TestMethod]
         [TestProperty("ExtractExchangeRates", "SUCCESS")]
         public void ExtractExchangeRatesCorrectFormat()
@@ -390,6 +422,10 @@ namespace LuccaDevisesTest
             Assert.AreEqual(exchangeRates[5].DA, "INR");
             Assert.AreEqual(exchangeRates[5].T, (decimal) 0.6571);
         }
+
+        #endregion
+
+        #region ERROR
 
         [TestMethod]
         [TestProperty("ExtractExchangeRates", "ERROR")]
@@ -542,6 +578,14 @@ namespace LuccaDevisesTest
             Assert.AreEqual(exception.InnerException.Message, string.Join("\n", messages));
         }
 
+        #endregion
+
+        #endregion
+
+        #region ExtractExchangeRate
+
+        #region SUCCESS
+
         [TestMethod]
         [TestProperty("ExtractExchangeRate", "SUCCESS")]
         public void ExtractExchangeRateCorrectFormat()
@@ -563,7 +607,11 @@ namespace LuccaDevisesTest
             Assert.AreEqual(exchangeRate.DA, "CHF");
             Assert.AreEqual(exchangeRate.T, (decimal)0.9661);
         }
-        
+
+        #endregion
+
+        #region ERROR
+
         [TestMethod]
         [TestProperty("ExtractExchangeRate", "ERROR")]
         public void ExtractExchangeRateEmpty()
@@ -741,6 +789,10 @@ namespace LuccaDevisesTest
 
             Assert.AreEqual(exception.InnerException.Message, string.Join("\n", messages));
         }
+
+        #endregion
+
+        #endregion
 
         #endregion
     }

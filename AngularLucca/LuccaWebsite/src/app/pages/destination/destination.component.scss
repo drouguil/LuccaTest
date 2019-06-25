@@ -1,0 +1,18 @@
+@import '../../../assets/scss/utils';
+
+:host {
+    @include dimensions(100%);
+    @include flex(vertical);
+    @include z-index(third);
+    @include background-size(cover);
+
+    h1 {
+        color: white;
+    }
+
+    .content {
+        @include margin(auto 10%);
+        @include flex(horizontal);
+        @include z-index(first);
+    }
+}

@@ -3,10 +3,10 @@ import { ApiService } from 'src/app/core/services/api.service';
 import { Destination } from 'src/app/core/models/api/destination';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Filter } from 'src/app/core/models/filter';
-import { Observable, pipe } from 'rxjs';
+import { Sort } from 'src/app/core/models/sort';
+import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-import { FilterEnum } from 'src/app/core/models/filer-enum';
+import { SortEnum } from 'src/app/core/models/sort-enum';
 
 @Component({
   selector: 'app-home',
@@ -15,26 +15,57 @@ import { FilterEnum } from 'src/app/core/models/filer-enum';
 })
 export class HomeComponent implements OnInit {
 
-  filters: Filter[] = [
-    new Filter('Nom', FilterEnum.NAME, 'list'),
-    new Filter('Prix', FilterEnum.PRICE, 'euro'),
-    new Filter('Votes', FilterEnum.RATING, 'star')
+  /**
+   * 
+   */
+
+  sorts: Sort[] = [
+    new Sort('Nom', SortEnum.NAME, 'list'),
+    new Sort('Prix', SortEnum.PRICE, 'euro'),
+    new Sort('Note', SortEnum.RATING, 'star')
   ];
 
-  filterControl = new FormControl();
+  /**
+   * 
+   */
+
+  sortControl = new FormControl();
+
+  /**
+   * 
+   */
 
   destinationControl = new FormControl();
 
+  /**
+   * 
+   */
+
   destinationsOptions: Observable<Destination[]>;
+
+  /**
+   * 
+   */
 
   destinations: Destination[];
 
-  constructor(private readonly apiService: ApiService, private readonly router: Router) {
+  /**
+   * 
+   * @param apiService 
+   * @param router 
+   */
 
-  }
+  constructor(
+    private readonly apiService: ApiService,
+    private readonly router: Router
+  ) { }
+
+  /**
+   * 
+   */
 
   async ngOnInit() {
-    this.filterControl.setValue(this.filters[0]);
+    this.sortControl.setValue(this.sorts[0]);
     this.destinations = await this.apiService.getDestinations();
     this.destinationsOptions = this.destinationControl.valueChanges
       .pipe(
@@ -43,35 +74,59 @@ export class HomeComponent implements OnInit {
       );
   }
 
+  /**
+   * 
+   * @param destinationId 
+   */
+
   selectDestination(destinationId: string) {
     this.router.navigate(['/destination/' + destinationId]);
   }
 
+  /**
+   * 
+   * @param rating 
+   */
+
   ratingArray(rating: string): any[] {
     return Array(Math.floor(+rating));
   }
+
+  /**
+   * 
+   * @param rating 
+   */
 
   isHalf(rating: string): boolean {
     const floor = Math.floor(+rating);
     return Math.round(+rating) - floor === 1;
   }
 
+  /**
+   * 
+   */
+
   selectFilter() {
-    const filter = this.filterControl.value as Filter;
+    const filter = this.sortControl.value as Sort;
     switch (filter.value) {
-      case FilterEnum.NAME:
-        this._filterByName();
+      case SortEnum.NAME:
+        this._sortByName();
         break;
-      case FilterEnum.PRICE:
-        this._filterByPrice();
+      case SortEnum.PRICE:
+        this._sortByPrice();
         break;
-      case FilterEnum.RATING:
-        this._filterByRating();
+      case SortEnum.RATING:
+        this._sortByRating();
         break;
       default:
         console.error('Unknow filter', filter);
     }
   }
+
+  /**
+   * 
+   * @param value 
+   */
 
   private _filter(value: string): Destination[] {
     const filterValue = value.toLowerCase();
@@ -79,7 +134,11 @@ export class HomeComponent implements OnInit {
     return this.destinations.filter(destination => destination.name.toLowerCase().includes(filterValue));
   }
 
-  private _filterByName(): void {
+  /**
+   * 
+   */
+
+  private _sortByName(): void {
     this.destinations = this.destinations
       .sort((a, b) => {
         if (a.name < b.name) { return -1; }
@@ -93,7 +152,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  private _filterByPrice(): void {
+  /**
+   * 
+   */
+
+  private _sortByPrice(): void {
     this.destinations = this.destinations.sort((a, b) => +a.priceRange.split('€')[0] - +b.priceRange.split('€')[0]);
     if (this.destinationControl.value) {
       this.destinationControl.updateValueAndValidity();
@@ -102,7 +165,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  private _filterByRating(): void {
+  /**
+   * 
+   */
+
+  private _sortByRating(): void {
     this.destinations = this.destinations.sort((a, b) => +b.rating - +a.rating);
     if (this.destinationControl.value) {
       this.destinationControl.updateValueAndValidity();

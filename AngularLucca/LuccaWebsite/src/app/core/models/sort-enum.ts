@@ -1,3 +1,3 @@
-export enum FilterEnum {
+export enum SortEnum {
     NAME, PRICE, RATING
 }

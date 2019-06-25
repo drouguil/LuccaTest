@@ -1,4 +1,3 @@
-// @import "~@lucca-front/scss/src/main.overridable.scss";
 @import './utils';
 
 body { 
@@ -21,4 +20,26 @@ html {
 
 ::-webkit-scrollbar {
     @include no-display();
+}
+
+.bg-dark {
+    @include absolute();
+    @include dimensions(100%);
+    @include z-index(third);
+    @include flex(vertical);
+    background-color: black;
+    opacity: 0.5;
+}
+
+.description {
+    @include dimensions(100%, auto);
+    @include padding(30px 25px);
+    border-radius: 5px;
+    background-color: white;
+}
+
+.breadcrumb {
+    .breadcrumb-item {
+        color: white;
+    }
 }
