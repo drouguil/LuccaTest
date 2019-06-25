@@ -11,9 +11,12 @@ Dirigez-vous dans le dossier /LuccaDevises.
 ### Par l'exécutable :
 
 * Ouvrez un invite de commandes dans ce répertoire
-* Effectuer l'une des commandes suivantes : `LuccaDevises %file%` (Windows) ou `./LuccaDevises.exe %file%` sous Linux en remplaçant %file% par le chemin vers le fichier (le répertoire par défaut est LuccaTest/LuccaDevises/)
+* Effectuez l'une des commandes suivantes : 
+* `LuccaDevises %file%` sous Windows
+* `./LuccaDevises.exe %file%` sous Linux
+* Remplacez %file% par le chemin vers le fichier (le répertoire par défaut est LuccaTest/LuccaDevises/)
 
-Exemple (le fichier data.txt se trouve dans le dossier LuccaTest/LuccaDevises)
+Exemple : (le fichier data.txt se trouve dans le dossier LuccaTest/LuccaDevises)
 
 Windows
 ```
@@ -28,7 +31,8 @@ Linux
 
 * Executez start.bat ou start.sh en fonction de votre environnement
 * Renseignez le chemin du fichier (le répertoire par défaut est LuccaTest/LuccaDevises/)
-* Exemple (le fichier data.txt se trouve dans le dossier LuccaTest/LuccaDevises)
+
+Exemple : (le fichier data.txt se trouve dans le dossier LuccaTest/LuccaDevises)
 
 ```
 File name ? data.txt
