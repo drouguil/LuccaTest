@@ -60,11 +60,11 @@ Le code des tests se trouve dans le dossier LuccaDevisesTest. (Seuls les tests d
 
 # LuccaVoyages
 
-L'objectif était de compléter une application Web de voyages sous Angular 7 afin de compléter la page de détails des destinations pour y afficher les différentes activités.
+L'objectif était de travailler sur une application Web de voyages sous Angular 7 afin de compléter la page de détails des destinations pour y afficher les différentes activités.
 
 Les destinations et activités sont récupérées depuis un serveur Express que l'on peut installer en local ou en ligne.
 
-Malheureusement j'ai lu le sujet un peu vite et je pensais qu'il fallait faire le site de zéro à partir des screens, je ne m'en susi rendu compte qu'il y a peu...
+Malheureusement j'ai lu le sujet un peu vite et je pensais qu'il fallait faire le site de zéro à partir des screens, je ne m'en suis rendu compte qu'il y a peu...
 
 Je partage donc le travail demandé ainsi que le travail supplémentaire (qui n'était pas demandé) que j'ai effectué.
 
