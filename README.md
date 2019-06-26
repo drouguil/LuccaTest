@@ -56,6 +56,8 @@ Ouvrez le fichier `LuccaDevises.sln` dans un IDE C# (ex : Visual Studio).
 
 Effectuez via l'IDE l'ensemble des tests (sur Visual Studio : Test -> Éxecuter -> Tous les tests).
 
+Si il ne trouve pas de test, faites un clean du projet de test (LuccaDevisesTest), regénérez le puis réessayez de lancer les tests cela devrait résoudre le problème.
+
 Le code des tests se trouve dans le dossier LuccaDevisesTest. (Seuls les tests du FileReaderService ont été effectués en guise d'exemple)
 
 # LuccaVoyages
