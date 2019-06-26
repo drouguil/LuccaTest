@@ -1,0 +1,59 @@
+@import '../../../assets/scss/utils';
+@import '../../../assets/scss/media_manager';
+
+:host {
+    background-color: rgba(51, 161, 167, 0.6);
+    @include dimensions(200rem, auto);
+    @include flex(vertical);
+
+    .infos {
+        color: white;
+        @include flex(vertical);
+        @include margin(auto);
+
+        ul {
+            @include padding(0);
+            @include margin(auto);
+            font-size: 18px;
+            list-style: none;
+        }
+    }
+
+    .tags {
+        @include flex(horizontal, wrap);
+        @include margin(10px auto);
+
+        .label {
+            @include margin(auto 10px);
+            background-color: rgb(51, 161, 167);
+            color: white;
+        }
+    }
+
+    img {
+        @include dimensions(80%, auto);
+        @include margin(10px auto);
+    }
+}
+
+
+@include media(all, small-mobile, mobile, tablet) {
+
+    :host {
+        @include dimensions(100%, auto);
+        @include padding(10px 0);
+
+        .infos {
+            @include flex(horizontal);
+        }
+
+        img {
+            @include dimensions(auto, 5em);
+            @include margin(auto 10px);
+        }
+
+        .label {
+            @include margin(10px auto);
+        }
+    }
+}

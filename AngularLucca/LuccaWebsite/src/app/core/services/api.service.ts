@@ -1,8 +1,18 @@
+// Generic Angular
+
 import { Injectable } from '@angular/core';
+
+// Http
+
 import { HttpClient } from '@angular/common/http';
+
+// Environment
+
 import { environment } from '../../../environments/environment';
-import { Destination } from '../models/api/destination';
-import { Activity } from '../models/api/activity';
+
+// Models
+
+import { Destination, Activity } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +21,7 @@ export class ApiService {
 
   /**
    * Constructor
-   * @param http Angular http requests manager
+   * @param http Http requests manager
    */
 
   constructor(private http: HttpClient) { }
@@ -38,7 +48,7 @@ export class ApiService {
 
   public async getDestinationById(id: string): Promise<Destination> {
     try {
-      return await this.http.get(environment.apiUrl + '/api/destination/' + id).toPromise() as Destination;
+      return await this.http.get(environment.apiUrl + `/api/destination/${id}`).toPromise() as Destination;
     } catch (err) {
       console.error(err);
       return undefined;
@@ -48,12 +58,12 @@ export class ApiService {
   /**
    * Get all activities with a destination id
    * @param id Destination id
-   * @returns 
+   * @returns (async) Activy with the destination id
    */
 
   public async getActivitiesByDestinationId(id: string): Promise<Activity[]> {
     try {
-      return await this.http.get(environment.apiUrl + '/api/activities?destinationId=' + id).toPromise() as Activity[];
+      return await this.http.get(environment.apiUrl + `/api/activities?destinationId=${id}`).toPromise() as Activity[];
     } catch (err) {
       console.error(err);
       return undefined;

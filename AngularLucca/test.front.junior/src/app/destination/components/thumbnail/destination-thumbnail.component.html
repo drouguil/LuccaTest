@@ -1,0 +1,11 @@
+<div class="card mod-clickable" [routerLink]="['/destination', destination?.id]">
+	<div class="card-image">
+		<img [src]="destination.thumbnail" alt="thumbnail">
+	</div>
+	<div class="card-content">
+		<h2>{{destination.name}}</h2>
+		<p>
+			{{destination.description}}
+		</p>
+	</div>
+</div>

@@ -1,18 +1,37 @@
 @import '../../../assets/scss/utils';
+@import '../../../assets/scss/media_manager';
 
 :host {
-    @include dimensions(100%);
+    @include dimensions(100%, auto);
     @include flex(vertical);
     @include z-index(third);
-    @include background-size(cover);
+    @include relative();
 
-    h1 {
+    h1,h2 {
         color: white;
+    }
+
+    h2 {
+        @include margin(20px 0 10px 0);
     }
 
     .content {
         @include margin(auto 10%);
         @include flex(horizontal);
         @include z-index(first);
+
+        @include media(all, small-mobile, mobile, tablet) {
+            @include margin(0);
+            flex-direction: column-reverse;
+        }
+    }
+
+    .infos {
+        @include margin(15% 10%);
+        @include flex(vertical);
+    }
+
+    .activities {
+        @include flex(horizontal, wrap);
     }
 }

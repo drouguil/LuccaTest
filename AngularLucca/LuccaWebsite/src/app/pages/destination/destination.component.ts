@@ -1,8 +1,18 @@
+// Generic Angular
+
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
-import { ApiService } from 'src/app/core/services/api.service';
-import { Destination } from 'src/app/core/models/api/destination';
+
+// Routing
+
 import { ActivatedRoute, Router } from '@angular/router';
-import { Activity } from 'src/app/core/models/api/activity';
+
+// Services
+
+import { ApiService } from 'src/app/core/services';
+
+// Models
+
+import { Activity, Destination } from 'src/app/core/models';
 
 @Component({
   selector: 'app-destination',
@@ -12,24 +22,24 @@ import { Activity } from 'src/app/core/models/api/activity';
 export class DestinationComponent implements OnInit {
 
   /**
-   * 
+   * Destination
    */
 
   destination: Destination;
 
   /**
-   * 
+   * Activities of the destination
    */
 
   activities: Activity[];
 
   /**
-   * 
-   * @param apiService 
-   * @param route 
-   * @param router 
-   * @param elRef 
-   * @param renderer 
+   * Constructor
+   * @param apiService API service
+   * @param route Route service
+   * @param router Routing service
+   * @param elRef Root component element reference service
+   * @param renderer Root component renderer
    */
 
   constructor(
@@ -41,7 +51,7 @@ export class DestinationComponent implements OnInit {
   ) { }
 
   /**
-   * 
+   * (async) Get all activities and the destination from API
    */
 
   async ngOnInit() {
@@ -52,7 +62,7 @@ export class DestinationComponent implements OnInit {
     this.activities = await this.apiService.getActivitiesByDestinationId(this.destination.id);
     this.renderer.setStyle(
       this.elRef.nativeElement,
-      'background', 'url("' + this.destination.bg + '") center center no-repeat'
+      'background', `url("${this.destination.bg}") center center/cover no-repeat`
     );
   }
 

@@ -1,27 +1,39 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+// Generic Angular
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// App component
+
+import { AppComponent } from './app.component';
+
+// Routing module
+
+import { AppRoutingModule } from './app-routing.module';
+
+// Http
+
+import { HttpClientModule } from '@angular/common/http';
+
+// Forms
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // Pages
-import { HomeComponent } from './pages/home/home.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { DestinationComponent } from './pages/destination/destination.component';
+
+import { HomeComponent, NotFoundComponent, DestinationComponent } from './pages';
 
 // Shared components
-import { ParallaxBackgroundComponent } from './shared/components/parallax-background/parallax-background.component';
+
+import { ParallaxBackgroundComponent, DestinationInfosComponent, ActivityInfosComponent } from './shared/components';
 
 // Angular material
+
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DestinationInfosComponent } from './shared/components/destination-infos/destination-infos.component';
-import { ActivityInfosComponent } from './shared/components/activity-infos/activity-infos.component';
 
 @NgModule({
   declarations: [

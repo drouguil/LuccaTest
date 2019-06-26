@@ -1,0 +1,21 @@
+<header>
+	<div class="container">
+		<h1>Lucca Voyages</h1>
+		<h4>
+			Clean modern travelblogger traveler simple organized, design traveler webdesign excursion. Colorful Travel pretty excursion, webdesign whimsical design excursion traveler cute blogger.
+		</h4>
+		<div class="card textfield mod-search mod-block searchbox">
+			<input class="textfield-input" placeholder="Cherchez une destination" [formControl]="clueCtrl">
+		</div>
+	</div>
+</header>
+<main class="main-content">
+	<section class="container">
+		<h2>Destinations</h2>
+		<div class="grid">
+			<div class="grid-md4 grid-lg3" *ngFor="let destination of destinations$ | async">
+				<app-destination-thumbnail [destination]="destination"></app-destination-thumbnail>
+			</div>
+		</div>
+	</section>
+</main>

@@ -1,8 +1,14 @@
+// generic Angular
+
 import { NgModule } from '@angular/core';
+
+// Routing
+
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { DestinationComponent } from './pages/destination/destination.component';
+
+// Pages
+
+import { HomeComponent, NotFoundComponent, DestinationComponent } from './pages';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

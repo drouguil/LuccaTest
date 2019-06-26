@@ -1,0 +1,45 @@
+<main class="main-content" [style.backgroundImage]="bgImg">
+	<div class="container">
+		<div class="grid">
+			<section class="grid-md8 grid-lg7 presentation-section">
+				<nav class="breadcrumb">
+					<a href="#" class="breadcrumb-item">Destinations</a>
+					<span class="breadcrumb-item is-active">{{destination.name}}</span>
+				</nav>
+				<h1>{{destination.name}}</h1>
+				<div class="card">
+					<div class="card-content">
+						{{destination.description}}
+					</div>
+				</div>
+
+				<h2>Activités touristiques</h2>
+
+				<div class="activities">
+					<app-activity-thumbnail *ngFor="let activity of activities" [activity]="activity"></app-activity-thumbnail>
+				</div>
+			</section>
+			<section class="grid-md4 grid-lg3 grid-lgOffset1 infos-section">
+				<div class="infos">
+					<ul>
+						<li><b>Pays :</b> {{destination.country}}</li>
+						<li><b>Prix :</b> {{destination.priceRange }}</li>
+						<li><b>Note :</b>
+							<i class="lucca-icon icon-star"></i>
+							<i class="lucca-icon icon-star"></i>
+							<i class="lucca-icon icon-star"></i>
+							<i class="lucca-icon icon-star"></i>
+							<i class="lucca-icon icon-unstared"></i></li>
+						<li>
+							<ul>
+								<!-- <b>Tags</b><br> -->
+								<li class="tag" *ngFor="let tag of destination.tags">{{tag}}</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<app-destination-gallery [destination]="destination"></app-destination-gallery>
+			</section>
+		</div>
+	</div>
+</main>

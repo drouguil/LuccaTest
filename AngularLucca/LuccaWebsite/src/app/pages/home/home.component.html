@@ -1,7 +1,17 @@
+<!-- Parallax background -->
+
 <app-parallax-background></app-parallax-background>
 
+<!-- Search destination form -->
+
 <form>
+  
+  <!-- Title -->
+  
   <h1 class="mod-headline">Lucca Voyages</h1>
+
+  <!-- Sort select -->
+
   <mat-form-field id="sort" appearance="outline">
     <mat-label>Trier par</mat-label>
     <mat-select (selectionChange)="selectSort()" [formControl]="sortControl">
@@ -13,6 +23,9 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  
+  <!-- Destination search select -->
+  
   <mat-form-field id="destination" appearance="outline">
     <input type="text" placeholder="Où voudriez-vous aller ?" aria-label="Destination" matInput [formControl]="destinationControl"
       [matAutocomplete]="auto">

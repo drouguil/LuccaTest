@@ -1,3 +1,5 @@
 #!/bin/bash
-start bash -c "cd ./tourism.server; npm install; npm start"
-start bash -c "cd ./LuccaWebsite; npm install; npm start"
+cd ./test.front.junior
+start bash -c "npm install; npm start"
+cd ../LuccaWebsite
+start bash -c "npm install; npm start"

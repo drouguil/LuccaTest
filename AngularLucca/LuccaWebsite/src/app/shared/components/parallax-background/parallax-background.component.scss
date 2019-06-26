@@ -1,10 +1,10 @@
 @import '../../../assets/scss/utils';
 
 :host {
+    @include background(image, "home.jpg", 4, center center/cover no-repeat);
     @include dimensions(100%);
     @include flex(vertical);
     @include z-index(second);
-    @include background-size(cover);
     @include absolute();
     @include background-attachment();
     @include perspective(1000);

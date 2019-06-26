@@ -1,0 +1,37 @@
+header {
+	background-image: url('//cdn.lucca.fr/tourism/header.jpg');
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+
+	.container {
+		position: relative;
+		margin-top: 0;
+		padding: 6rem 0 4rem;
+		text-align: center;
+
+		h1, h4 {
+			color: white;
+			text-align: center;
+			margin: 0 auto 1rem;
+			text-shadow: 0 1px 1px rgba(0, 0, 0, .33);
+			max-width: 700px;
+		}
+
+		.searchbox {
+			position: absolute;
+			bottom: -1rem;
+			left: 50%;
+			transform: translate(-50%, 50%);
+			max-width: 700px;
+			input {
+				padding: .95rem 2rem .95rem .95rem;
+			}
+			&::after {
+				bottom: .5rem;
+				right: .8rem;
+			}
+		}
+	}
+}

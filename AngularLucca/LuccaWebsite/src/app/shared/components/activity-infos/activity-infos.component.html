@@ -1,3 +1,7 @@
-<h2>{{ activity.name }}</h2>
-<img [src]="activity.thumbail">
-<div class="description">{{ activity.description }}</div>
+<div class="thumbnail-container">
+    <img [src]="activity.thumbnail">
+</div>
+<div class="infos">
+    <h2>{{ activity.name }}</h2>
+    <div class="description">{{ activity.description }}</div>
+</div>

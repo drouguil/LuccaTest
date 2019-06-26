@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic,700italic");
+
+:root {
+	--palettes-primary-color: #6FCDD2;
+	--palettes-primary-light: #6FCDD2;
+	--components-textfield-background: #FFF;
+	--components-textfield-input-placeholder: rgb(127, 205, 209);
+	--components-textfield-focus-placeholder: rgb(127, 205, 209);
+	--components-textfield-hover-background: rgb(235, 252, 252);
+	--commons-elevations-elevation-1: 0 0 20px rgba(0, 0, 0, 0.15);
+	--commons-elevations-elevation-3: 0 5px 20px rgba(0, 0, 0, 0.25);
+}
+
+.card {
+	border-radius: 5px;
+}

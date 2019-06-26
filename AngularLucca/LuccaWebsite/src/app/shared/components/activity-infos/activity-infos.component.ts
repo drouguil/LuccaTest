@@ -1,5 +1,10 @@
+// Generic Angular
+
 import { Component, Input } from '@angular/core';
-import { Activity } from 'src/app/core/models/api/activity';
+
+// Models
+
+import { Activity } from 'src/app/core/models';
 
 @Component({
   selector: 'app-activity-infos',
@@ -9,7 +14,7 @@ import { Activity } from 'src/app/core/models/api/activity';
 export class ActivityInfosComponent {
 
   /**
-   * 
+   * Activity from parent component
    */
 
   @Input() activity: Activity;

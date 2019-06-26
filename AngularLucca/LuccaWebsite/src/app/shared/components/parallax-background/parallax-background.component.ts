@@ -1,11 +1,13 @@
-import { Component, OnInit, ElementRef, HostListener, HostBinding, Renderer2 } from '@angular/core';
+// Generic Angular
+
+import { Component, ElementRef, HostListener, HostBinding, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-parallax-background',
   templateUrl: './parallax-background.component.html',
   styleUrls: ['./parallax-background.component.scss']
 })
-export class ParallaxBackgroundComponent implements OnInit {
+export class ParallaxBackgroundComponent {
 
   /**
    * Parallax X
@@ -30,7 +32,7 @@ export class ParallaxBackgroundComponent implements OnInit {
    */
 
   @HostBinding('style.transform')
-  transform = 'translate(' + this.x + 'px, ' + this.y + 'px) scale(1.1)';
+  transform = `translate(${this.x}px, ${this.y}px) scale(1.1)`;
 
   /**
    * Parallax effect
@@ -49,27 +51,17 @@ export class ParallaxBackgroundComponent implements OnInit {
     this.x += (lFollowX - this.x) * this.friction;
     this.y += (lFollowY - this.y) * this.friction;
 
-    this.renderer.setStyle(this.elRef.nativeElement, 'transform', 'translate(' + this.x + 'px, ' + this.y + 'px) scale(1.1)');
+    this.renderer.setStyle(this.elRef.nativeElement, 'transform', `translate(${this.x}px, ${this.y}px) scale(1.1)`);
   }
 
   /**
-   * 
-   * @param elRef 
-   * @param renderer 
+   * Constructor
+   * @param elRef Root component element reference service
+   * @param renderer Root component renderer
    */
 
   constructor(
     private readonly elRef: ElementRef,
     private readonly renderer: Renderer2
   ) { }
-
-  /**
-   * 
-   */
-
-  ngOnInit() {
-    this.renderer.setStyle(this.elRef.nativeElement, 'background',
-      'url("../../../assets/img/backgrounds/home.jpg") center center no-repeat');
-  }
-
 }

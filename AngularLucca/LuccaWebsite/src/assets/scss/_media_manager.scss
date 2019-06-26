@@ -1,0 +1,61 @@
+$screens: ( 
+    xs: 320, 
+    s: 640, 
+    m: 1024, 
+    l: 1440, 
+    xl: 1920
+);
+
+@function screen($screen) {
+    @return map-get($screens, $screen);
+}
+
+$devices: ( 
+    small-mobile: '(max-width: ' + screen(xs) + 'px)', 
+    mobile: '(min-width: ' + (screen(xs) + 1) + 'px) and (max-width: ' + screen(s) + 'px)', 
+    tablet: '(min-width: ' + (screen(s) + 1) + 'px) and (max-width: ' + screen(m) + 'px)', 
+    notebook: '(min-width: ' + (screen(m) + 1) + 'px) and (max-width: ' + screen(l) + 'px)', 
+    desktop: '(min-width: ' + (screen(l) + 1) + 'px) and (max-width: ' + screen(xl) + 'px)', 
+    wide: '(min-width: ' + (screen(xl) + 1) + 'px)'
+);
+
+@function device($device) {
+    @return map-get($devices, $device);
+}
+
+$orientations: ( 
+    landscape: '(orientation:landscape)', 
+    portrait: '(orientation:portrait)'
+);
+
+@function orientation($orientation) {
+    @return map-get($orientations, $orientation);
+}
+
+// screen : Écrans
+// handheld : Périphériques mobiles ou de petite taille
+// print : Impression
+// speech : Synthèses vocales
+// braille : Plages braille
+// embossed : Imprimantes braille
+// projection : Projecteurs (ou présentations avec slides)
+// tty : Terminal/police à pas fixe
+// tv : Téléviseur
+// all : Tous les précédents
+@function orientation-device($device: all, $orientation: portrait) {
+    @return map-get($devices, $device)+' and '+map-get($orientations, $orientation);
+}
+
+@mixin media($media: all, $devices...) {
+    $query: '';
+    @each $device in $devices {
+        $op: '';
+        @if ($query !='') {
+            $op: ', ';
+        }
+        $query: $query+$op+$media+" and "+device($device);
+    }
+    @media #{$query} {
+        @content;
+    }
+}

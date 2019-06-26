@@ -1,4 +1,14 @@
-<p><span>Pays :</span>{{ destination.country }}</p>
-<p><span>Prix :</span>{{ destination.pricerange }}</p>
-<p><span>Note :</span>{{ destination.rating }}</p>
-<span *ngFor="let tag of tags" class="label palette-primary">{{ tag }}</span>
+<div class="infos">
+    <ul>
+        <li><span>Pays : </span>{{ destination.country }}</li>
+        <li><span>Prix : </span>{{ destination.priceRange }}</li>
+        <li><span>Note : </span>
+            <i *ngFor="let item of ratingArray" class="lucca-icon icon-star"></i>
+            <i *ngFor="let item of notRatingArray" class="lucca-icon icon-unstared"></i>
+        </li>
+    </ul>
+    <div class="tags">
+            <span *ngFor="let tag of destination.tags" class="label">{{ tag }}</span>
+    </div>
+    <img *ngFor="let src of destination.gallery" [src]="src">
+</div>

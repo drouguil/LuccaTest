@@ -1,0 +1,15 @@
+:host {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-end;
+	align-items: center;
+	transform: translateX(50%);
+	img {
+		height: 200px;
+		margin-left: 1rem;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+	}
+	&:hover {
+		z-index: 1000;
+	}
+}

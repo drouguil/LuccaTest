@@ -1,12 +1,27 @@
+// Generic Angular
+
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/app/core/services/api.service';
-import { Destination } from 'src/app/core/models/api/destination';
+
+// Forms
+
 import { FormControl } from '@angular/forms';
+
+// Routing
+
 import { Router } from '@angular/router';
-import { Sort } from 'src/app/core/models/sort';
+
+// RxJS
+
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
-import { SortEnum } from 'src/app/core/models/sort-enum';
+
+// Services
+
+import { ApiService } from 'src/app/core/services';
+
+// Models
+
+import { Sort, SortEnum, Destination } from 'src/app/core/models';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +31,7 @@ import { SortEnum } from 'src/app/core/models/sort-enum';
 export class HomeComponent implements OnInit {
 
   /**
-   * 
+   * Array of sorts
    */
 
   sorts: Sort[] = [
@@ -26,33 +41,33 @@ export class HomeComponent implements OnInit {
   ];
 
   /**
-   * 
+   * Sort form control
    */
 
   sortControl = new FormControl();
 
   /**
-   * 
+   * Destination form control
    */
 
   destinationControl = new FormControl();
 
   /**
-   * 
+   * Destinations as observable
    */
 
   destinationsOptions: Observable<Destination[]>;
 
   /**
-   * 
+   * Destinations
    */
 
   destinations: Destination[];
 
   /**
-   * 
-   * @param apiService 
-   * @param router 
+   * Constructor
+   * @param apiService API service
+   * @param router Routing service
    */
 
   constructor(
@@ -61,7 +76,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   /**
-   * 
+   * (async) Initialize form and get all destinations from API
    */
 
   async ngOnInit() {
@@ -75,26 +90,28 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * 
-   * @param destinationId 
+   * Select destination
+   * @param destinationId destination Id
    */
 
-  selectDestination(destinationId: string) {
-    this.router.navigate(['/destination/' + destinationId]);
+  selectDestination(destinationId: string): void {
+    this.router.navigate([`/destination/${destinationId}`]);
   }
 
   /**
-   * 
-   * @param rating 
+   * Get array for *ngFor N times
+   * @param rating Rating
+   * @returns Array for rating foreach
    */
 
-  ratingArray(rating: string): any[] {
+  ratingArray(rating: string): number[] {
     return Array(Math.floor(+rating));
   }
 
   /**
-   * 
-   * @param rating 
+   * Check if rating is .5
+   * @param rating rating
+   * @returns If rating is .5
    */
 
   isHalf(rating: string): boolean {
@@ -103,12 +120,12 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * 
+   * Select sort from select
    */
 
-  selectFilter() {
-    const filter = this.sortControl.value as Sort;
-    switch (filter.value) {
+  selectSort(): void {
+    const sort = this.sortControl.value as Sort;
+    switch (sort.value) {
       case SortEnum.NAME:
         this._sortByName();
         break;
@@ -119,13 +136,14 @@ export class HomeComponent implements OnInit {
         this._sortByRating();
         break;
       default:
-        console.error('Unknow filter', filter);
+        console.error('Unknow sort', sort);
     }
   }
 
   /**
-   * 
-   * @param value 
+   * Searching filter
+   * @param value Searching value
+   * @returns Destinations corresponding to filter
    */
 
   private _filter(value: string): Destination[] {
@@ -135,7 +153,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * 
+   * Sort destinations by name ASC
    */
 
   private _sortByName(): void {
@@ -153,7 +171,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * 
+   * Sort destinations by price ASC
    */
 
   private _sortByPrice(): void {
@@ -166,7 +184,7 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * 
+   * Sort destinations by rating DESC
    */
 
   private _sortByRating(): void {
